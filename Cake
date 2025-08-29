@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <chrono>  // เพิ่มไลบรารี chrono เพื่อวัดเวลา
+
+using namespace std;
+int main()
+{
+    int N;
+    cin >> N;
+    int c;
+    long long value = 0;
+    vector<int>deli(N);
+    // วัดเวลาเริ่มต้น
+    auto start = chrono::high_resolution_clock::now();
+    if (N > 2)
+    {
+        do {
+            long long i = N - 1;
+
+            value = value + abs((((i-1) * ((i-1)+1)) / 2) + 1);
+                //cout << c << " ";
+                //value = value + c;
+            
+            //cout << " \n";
+            N -= 2;
+        } while (N > 2);
+    }
+    // วัดเวลาเสร็จสิ้น
+    auto end = chrono::high_resolution_clock::now();
+
+    // คำนวณเวลาที่ใช้
+    chrono::duration<double> duration = end - start;
+
+    // แสดงผลลัพธ์
+    cout << value << endl;
+    cout << "Time taken: " << duration.count() << " seconds" << endl;
+
+    cout << value;
+}
